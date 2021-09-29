@@ -20,7 +20,7 @@ if (cn.WORKTYPE == 'private') {
 
     await message.sendMessage(SPDF_PROC);
 
-    await message.sendMessage(Buffer.from(webimage.data), MessageType.document, {mimetype: Mimetype.pdf})
+    await message.sendMessage(Buffer.from(webimage.data), MessageType.document, {mimetype: Mimetype.pdf, filename: 'Skueletor.pdf'})
 
 })); 
 }
@@ -35,7 +35,7 @@ else if (cn.WORKTYPE == 'public') {
 
     await message.sendMessage(SPDF_PROC);
 
-    await message.sendMessage(Buffer.from(webimage.data), MessageType.document, {mimetype: Mimetype.pdf})
+    await message.sendMessage(Buffer.from(webimage.data), MessageType.document, {mimetype: Mimetype.pdf, filename: 'Skueletor.pdf'})
 
 })); 
 }
