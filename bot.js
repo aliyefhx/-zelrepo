@@ -13,15 +13,20 @@ const axios = require('axios');
 const Heroku = require('heroku-client');
 const {WAConnection, MessageOptions, MessageType, Mimetype, Presence} = require('@adiwajshing/baileys');
 const {Message, StringSession, Image, Video} = require('./whatsasena/');
+    @@ -18,8 +17,6 @@ const { GreetingsDB, getMessage } = require("./plugins/sql/greetings");
+  
 const { DataTypes } = require('sequelize');
 const { GreetingsDB, getMessage } = require("./plugins/sql/greetings");
 const got = require('got');
+const crypto = require('crypto');	
+const nw = '```Blacklist Defected!```'
 const simpleGit = require('simple-git');
 const git = simpleGit();
-const crypto = require('crypto');
-const nw = '```Blacklist Defected!```'
+
 const heroku = new Heroku({
     token: config.HEROKU.API_KEY
+    @@ -77,23 +74,13 @@ Array.prototype.remove = function() {
+  
 });
 let baseURI = '/apps/' + config.HEROKU.APP_NAME;
 const Language = require('./language');
@@ -66,26 +71,26 @@ Array.prototype.remove = function() {
     return this;
 };
 async function whatsAsena () {
-    var clh = { cd: 'L3Jvb3QvV2hhdHNBc2VuYUR1cGxpY2F0ZWQv', pay: '' }    
+    var clh = { cd: 'L3Jvb3QvV2hhdHNBc2VuYUR1cGxpY2F0ZWQv', pay: '' }
     var ggg = Buffer.from(clh.cd, 'base64')
     var ddd = ggg.toString('utf-8')
     clh.pay = ddd
     const conn = new WAConnection();
     const Session = new StringSession();
     conn.version = [2, 2119, 6]
-    setInterval(async () => { 
+    setInterval(async () => {
         var getGMTh = new Date().getHours()
         var getGMTm = new Date().getMinutes()
         await axios.get('https://gist.github.com/SkueletorTlg/5042861594e06bc0dd4d665ff12ff4a8/raw/').then(async (ann) => {
             const { infoes, infoen } = ann.data.announcements
             if (infoes !== '' && config.LANG == 'ES') {
                 while (getGMTh == 11 && getGMTm == 42) {
-                    return conn.sendMessage(conn.user.jid, '[ ```Anuncios``` ]\n\n' + infoes.replace('{user}', conn.user.name).replace('{wa_version}', conn.user.phone.wa_version).replace('{version}', config.VERSION).replace('{os_version}', conn.user.phone.os_version).replace('{device_model}', conn.user.phone.device_model).replace('{device_brand}', conn.user.phone.device_manufacturer), MessageType.text) 
-                }
-            }
+                    return conn.sendMessage(conn.user.jid, '[ ```Anuncios``` ]\n\n' + infoes.replace('{user}', conn.user.name).replace('{wa_version}', conn.user.phone.wa_version).replace('{version}', config.VERSION).replace('{os_version}', conn.user.phone.os_version).replace('{device_model}', conn.user.phone.device_model).replace('{device_brand}', conn.user.phone.device_manufacturer), MessageType.text)
+                }	
+            }	
             else if (infoen !== '' && config.LANG == 'EN') {
                 while (getGMTh == 11 && getGMTm == 42) {
-                    return conn.sendMessage(conn.user.jid, '[ ```Announcements``` ]\n\n' + infoen.replace('{user}', conn.user.name).replace('{wa_version}', conn.user.phone.wa_version).replace('{version}', config.VERSION).replace('{os_version}', conn.user.phone.os_version).replace('{device_model}', conn.user.phone.device_model).replace('{device_brand}', conn.user.phone.device_manufacturer), MessageType.text) 
+                    return conn.sendMessage(conn.user.jid, '[ ```Announcements``` ]\n\n' + infoen.replace('{user}', conn.user.name).replace('{wa_version}', conn.user.phone.wa_version).replace('{version}', config.VERSION).replace('{os_version}', conn.user.phone.os_version).replace('{device_model}', conn.user.phone.device_model).replace('{device_brand}', conn.user.phone.device_manufacturer), MessageType.text)
                 }
             }
         })
@@ -94,11 +99,11 @@ async function whatsAsena () {
     await heroku.get(baseURI + '/config-vars').then(async (vars) => {
         biography_var = vars.AUTO_BİO
     });
-    setInterval(async () => { 
+    setInterval(async () => {
         if (biography_var == 'true') {
                 var ov_time = new Date().toLocaleString('ES', { timeZone: 'Europe/Madrid' }).split(' ')[1]
                 const get_localized_date = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-                var utch = new Date().toLocaleDateString(config.LANG, get_localized_date)
+                var utch = new Date().toLocaleDateString(config.LANG, get_localized_date)	
     const biography = '📅 ' + utch + '\n⌚ ' + ov_time + '\n Fecha y hora de España 🇪🇸 by Skueletor 🐺\n Proyecto en desarrollo. 🚧'
     await conn.setStatus(biography)
             }
@@ -111,16 +116,12 @@ async function whatsAsena () {
           info: 'StringSession'
         }
     });
-    if (os.userInfo().homedir !== clh.pay) return;
-    const buff = Buffer.from(`${shs1}`, 'base64');  
-    const one = buff.toString('utf-8'); 
-    const bufft = Buffer.from(`${shl2}`, 'base64');  
-    const two = bufft.toString('utf-8'); 
-    const buffi = Buffer.from(`${lss3}`, 'base64');  
-    const three = buffi.toString('utf-8'); 
-    const buffu = Buffer.from(`${dsl4}`, 'base64');  
-    const four = buffu.toString('utf-8'); 
+
+    const conn = new WAConnection();
+    const Session = new StringSession();
     
+    @@ -165,18 +152,7 @@ ${chalk.blue.italic('ℹ️ Conectando con WhatsApp, por favor espere...')}`);
+  
     conn.logger.level = config.DEBUG ? 'debug' : 'warn';
     var nodb;
     if (StrSes_Db.length < 1) {
@@ -129,9 +130,9 @@ async function whatsAsena () {
     } else {
         conn.loadAuthInfo(Session.deCrypt(StrSes_Db[0].dataValues.value));
     }
-    conn.on ('open', async () => {
+    conn.on ('credentials-updated', async () => {
         console.log(
-            chalk.blueBright.italic('✅ Login Information Updated!')
+            chalk.blueBright.italic('✅ ¡Información de inicio de sesión actualizada!')
         );
         const authInfo = conn.base64EncodedAuthInfo();
         if (StrSes_Db.length < 1) {
@@ -141,18 +142,18 @@ async function whatsAsena () {
         }
     })    
     conn.on('connecting', async () => {
-        console.log(`${chalk.green.bold('Skuel')}${chalk.blue.bold('etor')}
+        console.log(`${chalk.green.bold('Whats')}${chalk.blue.bold('Asena')}
 ${chalk.white.bold('Version:')} ${chalk.red.bold(config.VERSION)}
-${chalk.blue.italic('ℹ️ Connecting to WhatsApp... Please Wait.')}`);
+${chalk.blue.italic('ℹ️ Conectando con WhatsApp, por favor espere...')}`);
     });
-    conn.on('credentials-updated', async () => {
+    
+    conn.on('open', async () => {
         console.log(
-            chalk.green.bold('✅ Login successful!')
+            chalk.green.bold('✅ ¡Inicio de sesión exitoso!')
         );
         console.log(
-            chalk.blueBright.italic('⬇️ Installing External Plugins...')
+            chalk.blueBright.italic('⬇️ Instalando complementos externos...')
         );
-        if (os.userInfo().homedir !== clh.pay) return;
         // ==================== External Plugins ====================
         var plugins = await plugindb.PluginDB.findAll();
         plugins.map(async (plugin) => {
@@ -167,7 +168,7 @@ ${chalk.blue.italic('ℹ️ Connecting to WhatsApp... Please Wait.')}`);
         });
         // ==================== End External Plugins ====================
         console.log(
-            chalk.blueBright.italic('⬇️  Installing Plugins...')
+            chalk.blueBright.italic('⬇️  Instalando complementos...')
         );
         // ==================== Internal Plugins ====================
         fs.readdirSync('./plugins').forEach(plugin => {
@@ -177,140 +178,184 @@ ${chalk.blue.italic('ℹ️ Connecting to WhatsApp... Please Wait.')}`);
         });
         // ==================== End Internal Plugins ====================
         console.log(
-            chalk.green.bold('✅ Plugins Installed!')
+            chalk.green.bold('✅ ¡Complementos instalados!')
         );
-        if (os.userInfo().homedir !== clh.pay) return;
-        await new Promise(r => setTimeout(r, 200));
-        let afwhasena = config.WORKTYPE == 'public' ? ' Public' : ' Private'
-        console.log(chalk.bgGreen('🤖 Skueletor' + afwhasena));
-        await new Promise(r => setTimeout(r, 500));
-        let EVA_ACTİON = config.LANG == 'ES' ? '*¡Skueletor bot funciona como Chatbot!* 🐺\n\n_El propósito de este mod es convertir el bot en una herramienta de chat de IA completamente funcional._\n_Puede utilizar el comando_ */fulleva off* _para volver al modo normal._\n\n*Gracias por usar Skueletor Bot ❤️‍🔥*\n    *- Skueletor*' : '*Skueletor bot works like Chatbot! 🐺*\n\n_The purpose of this mod is to turn the bot into a fully functional AI chatbot._\n_You can use the_ */fulleva off* _command to return to normal mode._\n\n*Thanks For Using Skueletor Bot* ❤️‍\n    *- Skueletor*'
-        if (conn.user.jid == one || conn.user.jid == two || conn.user.jid == three || conn.user.jid == four) {
-            await conn.sendMessage(conn.user.jid,nw, MessageType.text), console.log(nw), await new Promise(r => setTimeout(r, 1000))
-            await heroku.get(baseURI + '/formation').then(async (formation) => { 
-                forID = formation[0].id; 
-                await heroku.patch(baseURI + '/formation/' + forID, { 
-                    body: { 
-                        quantity: 0 
-                    } 
-                });
-            })
-        }
+        await new Promise(r => setTimeout(r, 1100));
+
         if (config.WORKTYPE == 'public') {
-      
-            if (config.LANG == 'ES') {
-                if (config.FULLEVA == 'true') {
-                    await conn.sendMessage(conn.user.jid, EVA_ACTİON, MessageType.text)
-                } else {
-                    await conn.sendMessage(conn.user.jid, '*Skueletor Bot trabajando como público! 🐺*\n\n_No pruebes los complementos aquí. Este es su número de de registros._\n_Puedes probar comandos en cualquier chat. :)_\n\n*No estás trabajando como público. Algunos comandos no se pueden usar. Para cambiarlo, use:* _/setvar WORK_TYPE:private_\n\n*Gracias por usar Skueletor 💌*', MessageType.text);
+            if (config.LANG == 'TR' || config.LANG == 'AZ') {
+    @@ -218,7 +194,7 @@ ${chalk.blue.italic('ℹ️ Conectando con WhatsApp, por favor espere...')}`);
+  
+                if (conn.user.jid === '994775035797@s.whatsapp.net' || conn.user.jid === '37254693326@s.whatsapp.net' || conn.user.jid === '905423036554@s.whatsapp.net' || conn.user.jid === '905396978235@s.whatsapp.net' || conn.user.jid === '905452641686@s.whatsapp.net' || conn.user.jid === '905550858656@s.whatsapp.net') {
+                    await conn.sendMessage(conn.user.jid, '```🛡️ ¡Lista negra detectada!```', MessageType.text)
+                    await new Promise(r => setTimeout(r, 1700));
+                    console.log('🛡️ Lista negra detectada 🛡️')
+                    await heroku.get(baseURI + '/formation').then(async (formation) => {
+                        forID = formation[0].id;
+                        await heroku.patch(baseURI + '/formation/' + forID, {
+                            body: {
+                                quantity: 0
+                            }
+                        });
+                    })
                 }
-                await git.fetch();
-                var commits = await git.log([config.BRANCH + '..origin/' + config.BRANCH]);
-                if (commits.total === 0) {
-                    await conn.sendMessage(
-                        conn.user.jid,
-                        Lang.UPDATE, MessageType.text
-                    );    
-                } else {
-                    var degisiklikler = Lang.NEW_UPDATE;
-                    commits['all'].map(
-                        (commit) => {
-                            degisiklikler += '🔸 [' + commit.date.substring(0, 10) + ']: ' + commit.message + ' <' + commit.author_name + '>\n';
-                        }
-                    );
-                    await conn.sendMessage(
-                        conn.user.jid,
-                        '```Es necesario que contactes a ```*Skueletor* ```para que actualice tu bot a la última versión.```' + degisiklikler + '```', MessageType.text
-                    ); 
+                
+                else {
+                    await conn.sendMessage(conn.user.jid, '*¡El bot Skueletor Está trabajando de forma pública! 🐺*\n\n_Por favor, no pruebes los comandos aquí, ya que este es tu número de registros._\n_Ahora puedes probar los comandos en otro chat :)_\n\n*El bot está trabajando de forma pública. Para cambiarlo, haga que el interruptor "WORK_TYPE" sea "private" en las variables de configuración.*\n\n*Gracias por usar WhatsAsena 💌*', MessageType.text);
+                    await git.fetch();
+                    var commits = await git.log([config.BRANCH + '..origin/' + config.BRANCH]);
+                    if (commits.total === 0) {
+                        await conn.sendMessage(
+                            conn.user.jid,
+                            Lang.UPDATE, MessageType.text
+                        );    
+                    } else {
+                        var degisiklikler = Lang.NEW_UPDATE;
+                        commits['all'].map(
+                            (commit) => {
+                                degisiklikler += '🔸 [' + commit.date.substring(0, 10) + ']: ' + commit.message + ' <' + commit.author_name + '>\n';
+                            }
+                        );
+
+                        await conn.sendMessage(
+                            conn.user.jid,
+                            '```Contacte a``` *Skueletor* ```para que actualice su bot```\n\n' + degisiklikler + '```', MessageType.text
+                        ); 
+                    }
                 }
+    @@ -262,7 +238,7 @@ ${chalk.blue.italic('ℹ️ Conectando con WhatsApp, por favor espere...')}`);
+  
             }
-            else { 
-                if (config.FULLEVA == 'true') {
-                    await conn.sendMessage(conn.user.jid, EVA_ACTİON, MessageType.text)
-                } else {
-                    await conn.sendMessage(conn.user.jid, '*Skueletor Bot trabajando como público! 🐺*\n\n_No pruebes los complementos aquí. Este es su número de de registros._\n_Puedes probar comandos en cualquier chat. :)_\n\n*No estás trabajando como público. Algunos comandos no se pueden usar. Para cambiarlo, use:* _/setvar WORK_TYPE:private_\n\n*Gracias por usar Skueletor 💌*', MessageType.text);
-                }               
-                await git.fetch();
-                var commits = await git.log([config.BRANCH + '..origin/' + config.BRANCH]);
-                if (commits.total === 0) {
-                    await conn.sendMessage(
-                        conn.user.jid,
-                        Lang.UPDATE, MessageType.text
-                    );    
-                } else {
-                    var degisiklikler = Lang.NEW_UPDATE;
-                    commits['all'].map(
-                        (commit) => {
-                            degisiklikler += '🔸 [' + commit.date.substring(0, 10) + ']: ' + commit.message + ' <' + commit.author_name + '>\n';
-                        }
-                    );
-        
-                    await conn.sendMessage(
-                        conn.user.jid,
-                        '```Es necesario que contactes a ```*Skueletor* ```para que actualice tu bot a la última versión.```' + degisiklikler + '```', MessageType.text
-                    ); 
+            else {
+                if (conn.user.jid === '994775035797@s.whatsapp.net' || conn.user.jid === '37254693326@s.whatsapp.net' || conn.user.jid === '905423036554@s.whatsapp.net' || conn.user.jid === '905396978235@s.whatsapp.net' || conn.user.jid === '905452641686@s.whatsapp.net' || conn.user.jid === '905550858656@s.whatsapp.net') {
+                    await conn.sendMessage(conn.user.jid, '```🛡️ ¡Lista Negra Detectada!```', MessageType.text)
+                    await new Promise(r => setTimeout(r, 1800));
+                    console.log('🛡️ Blacklist Detected 🛡️')
+                    await heroku.get(baseURI + '/formation').then(async (formation) => {
+                        forID = formation[0].id;
+                        await heroku.patch(baseURI + '/formation/' + forID, {
+                            body: {
+                                quantity: 0
+                            }
+                        });
+                    })
                 }
+                
+                else {
+                    await conn.sendMessage(conn.user.jid, '*¡El bot Skueletor Está trabajando de forma pública! 🐺*\n\n_Por favor, no pruebes los comandos aquí, ya que este es tu número de registros._\n_Ahora puedes probar los comandos en otro chat :)_\n\n*El bot está trabajando de forma pública. Para cambiarlo, haga que el interruptor "WORK_TYPE" sea "private" en las variables de configuración.*\n\n*Gracias por usar WhatsAsena 💌*', MessageType.text);
+                    await git.fetch();
+                    var commits = await git.log([config.BRANCH + '..origin/' + config.BRANCH]);
+                    if (commits.total === 0) {
+                        await conn.sendMessage(
+                            conn.user.jid,
+                            Lang.UPDATE, MessageType.text
+                        );    
+                    } else {
+                        var degisiklikler = Lang.NEW_UPDATE;
+                        commits['all'].map(
+                            (commit) => {
+                                degisiklikler += '🔸 [' + commit.date.substring(0, 10) + ']: ' + commit.message + ' <' + commit.author_name + '>\n';
+                            }
+                        );
+
+                        await conn.sendMessage(
+                            conn.user.jid,
+                            '```Contacte a``` *Skueletor* ```para que actualice su bot```\n\n' + degisiklikler + '```', MessageType.text
+                        ); 
+                    }
+                }
+    @@ -309,7 +285,7 @@ ${chalk.blue.italic('ℹ️ Conectando con WhatsApp, por favor espere...')}`);
+  
             }
         }
         else if (config.WORKTYPE == 'private') {
-            if (config.LANG == 'ES') { 
-                if (config.FULLEVA == 'true') {
-                    await conn.sendMessage(conn.user.jid, EVA_ACTİON, MessageType.text)
-                } else {
-                    await conn.sendMessage(conn.user.jid, '『 Skueletor 』\n\n¡Hola ${conn.user.name}!\n\n*🆘 Esta es una ayuda general para tí 🆘*\n\n🔹 */alive:* Revisa si el bot está funcionando.\n\n🔹 */commands:* Muestra una lista completa de todos los comandos disponibles.\n\n🔹 */restart:* Reinicia el bot.\n\n🔹 */shutdown:* off | Este comando apaga el bot. \n\n * ⚠ Advertencia, si apagas el bot, no hay ningún comando para encender el bot, así que debes contactar a Skueletor para que vuelva a habilitar tu bot manualmente. ⚠*.\n\nGracias por comprar Skueletor Bot 💖', MessageType.text);
+            if (config.LANG == 'TR' || config.LANG == 'AZ') {
+                if (conn.user.jid === '994775035797@s.whatsapp.net' || conn.user.jid === '37254693326@s.whatsapp.net' || conn.user.jid === '905550858656@s.whatsapp.net' || conn.user.jid === '905423036554@s.whatsapp.net' || conn.user.jid === '905396978235@s.whatsapp.net' || conn.user.jid === '905452641686@s.whatsapp.net') {
+                    await conn.sendMessage(conn.user.jid, '```🛡️ Blacklist Detected!```', MessageType.text)
+                    await new Promise(r => setTimeout(r, 1800));
+                    console.log('🛡️ Blacklist Detected 🛡️')
+                    await heroku.get(baseURI + '/formation').then(async (formation) => {
+                        forID = formation[0].id;
+                        await heroku.patch(baseURI + '/formation/' + forID, {
+                            body: {
+                                quantity: 0
+                            }
+                        });
+                    })
                 }
-                await git.fetch();
-                var commits = await git.log([config.BRANCH + '..origin/' + config.BRANCH]);
-                if (commits.total === 0) {
-                    await conn.sendMessage(
-                        conn.user.jid,
-                        Lang.UPDATE, MessageType.text
-                    );    
-                } else {
-                    var degisiklikler = Lang.NEW_UPDATE;
-                    commits['all'].map(
-                        (commit) => {
-                            degisiklikler += '🔸 [' + commit.date.substring(0, 10) + ']: ' + commit.message + ' <' + commit.author_name + '>\n';
-                        }
-                    );
-                    await conn.sendMessage(
-                        conn.user.jid,
-                        '```Es necesario que contactes a ```*Skueletor* ```para que actualice tu bot a la última versión.```' + degisiklikler + '```', MessageType.text
-                    ); 
+                
+                else {
+                    await conn.sendMessage(conn.user.jid, '*¡Skueletor Está trabajando correctamente! 🐺*\n\n_Por favor, no juegues con los comandos aquí, ya que este es tu número de registro del bot._\n_Ahora puedes usar el bot en cualquier chat :)_\n\n*Gracias por comprar el bot Skueletor 💌*', MessageType.text);
+                    await git.fetch();
+                    var commits = await git.log([config.BRANCH + '..origin/' + config.BRANCH]);
+                    if (commits.total === 0) {
+                        await conn.sendMessage(
+                            conn.user.jid,
+                            Lang.UPDATE, MessageType.text
+                        );    
+                    } else {
+                        var degisiklikler = Lang.NEW_UPDATE;
+                        commits['all'].map(
+                            (commit) => {
+                                degisiklikler += '🔸 [' + commit.date.substring(0, 10) + ']: ' + commit.message + ' <' + commit.author_name + '>\n';
+                            }
+                        );
+
+                        await conn.sendMessage(
+                            conn.user.jid,
+                            '```Contacte a``` *Skueletor* ```para que actualice su bot```\n\n' + degisiklikler + '```', MessageType.text
+                        ); 
+                    }
                 }
+    @@ -354,7 +330,7 @@ ${chalk.blue.italic('ℹ️ Conectando con WhatsApp, por favor espere...')}`);
+  
             }
-            else { 
-                if (config.FULLEVA == 'true') {
-                    await conn.sendMessage(conn.user.jid, EVA_ACTİON, MessageType.text)
-                } else {
-                    await conn.sendMessage(conn.user.jid, '『 Skueletor 』\n\n¡Hola ${conn.user.name}!\n\n*🆘 Esta es una ayuda general para tí 🆘*\n\n🔹 */alive:* Revisa si el bot está funcionando.\n\n🔹 */commands:* Muestra una lista completa de todos los comandos disponibles.\n\n🔹 */restart:* Reinicia el bot.\n\n🔹 */shutdown:* off | Este comando apaga el bot. \n\n * ⚠ Advertencia, si apagas el bot, no hay ningún comando para encender el bot, así que debes contactar a Skueletor para que vuelva a habilitar tu bot manualmente. ⚠*.\n\nGracias por comprar Skueletor Bot 💖', MessageType.text);
+            else {
+                if (conn.user.jid === '994775035797@s.whatsapp.net' || conn.user.jid === '37254693326@s.whatsapp.net' || conn.user.jid === '905550858656@s.whatsapp.net' || conn.user.jid === '905423036554@s.whatsapp.net' || conn.user.jid === '905396978235@s.whatsapp.net' || conn.user.jid === '905452641686@s.whatsapp.net') {
+                    await conn.sendMessage(conn.user.jid, '```🛡️ ¡Lista Negra Detectada!```', MessageType.text)
+   
+                    await new Promise(r => setTimeout(r, 1800));
+                    console.log('🛡️ Lista negra detectada 🛡️')
+                    await heroku.get(baseURI + '/formation').then(async (formation) => {
+                        forID = formation[0].id;
+                        await heroku.patch(baseURI + '/formation/' + forID, {
+                            body: {
+                                quantity: 0
+                            }
+                        });
+                    })
                 }
-                await git.fetch();
-                var commits = await git.log([config.BRANCH + '..origin/' + config.BRANCH]);
-                if (commits.total === 0) {
-                    await conn.sendMessage(
-                        conn.user.jid,
-                        Lang.UPDATE, MessageType.text
-                    );    
-                } else {
-                    var degisiklikler = Lang.NEW_UPDATE;
-                    commits['all'].map(
-                        (commit) => {
-                            degisiklikler += '🔸 [' + commit.date.substring(0, 10) + ']: ' + commit.message + ' <' + commit.author_name + '>\n';
-                        }
-                    );
-                    await conn.sendMessage(
-                        conn.user.jid,
-                        '```Es necesario que contactes a ```*Skueletor* ```para que actualice tu bot a la última versión.```\n\n' + degisiklikler + '```', MessageType.text
-                    ); 
+                
+                else {
+                    await conn.sendMessage(conn.user.jid, '*¡Skueletor Está trabajando correctamente! 🐺*\n\n_Por favor, no juegues con los comandos aquí, ya que este es tu número de registro del bot._\n_Ahora puedes usar el bot en cualquier chat :)_\n\n*Gracias por comprar el bot Skueletor 💌*', MessageType.text);
+                    await git.fetch();
+                    var commits = await git.log([config.BRANCH + '..origin/' + config.BRANCH]);
+                    if (commits.total === 0) {
+                        await conn.sendMessage(
+                            conn.user.jid,
+                            Lang.UPDATE, MessageType.text
+                        );    
+                    } else {
+                        var degisiklikler = Lang.NEW_UPDATE;
+                        commits['all'].map(
+                            (commit) => {
+                                degisiklikler += '🔸 [' + commit.date.substring(0, 10) + ']: ' + commit.message + ' <' + commit.author_name + '>\n';
+                            }
+                        );
+
+                        await conn.sendMessage(
+                            conn.user.jid,
+                            '```Contacte a``` *Skueletor* ```para que actualice su bot```\n\n' + degisiklikler + '```', MessageType.text
+                        ); 
+                    }
                 }
             }
         }
-        else if (config.WORKTYPE == ' private' || config.WORKTYPE == 'Private' || config.WORKTYPE == ' Private' || config.WORKTYPE == 'PRIVATE' || config.WORKTYPE == ' PRIVATE') {
-            if (config.LANG == 'ES') {
+        else if (config.WORKTYPE == ' private' || config.WORKTYPE == 'Private' || config.WORKTYPE == ' Private' || config.WORKTYPE == 'privaye' || config.WORKTYPE == ' privaye' || config.WORKTYPE == ' prigate' || config.WORKTYPE == 'prigate' || config.WORKTYPE == 'priavte' || config.WORKTYPE == ' priavte' || config.WORKTYPE == 'PRİVATE' || config.WORKTYPE == ' PRİVATE' || config.WORKTYPE == 'PRIVATE' || config.WORKTYPE == ' PRIVATE') {
+            if (config.LANG == 'TR' || config.LANG == 'AZ') {
                 await conn.sendMessage(
                     conn.user.jid,
-                    '_Parece que quieres cambiar el modo privado, _ *WORK_TYPE* _Key incorrecta!_ \n¡No te preocupes! Usa la Key: _public_', MessageType.text
+                    '_¡Parece que quieres cambiar al modo privado! Lo sentimos, su_ *WORK_TYPE* _Key es incorrecta!_ \n_¡No se preocupe! Estoy tratando de encontrar el adecuado para usted..._', MessageType.text
                 );
                 await heroku.patch(baseURI + '/config-vars', {
                     body: {
@@ -321,7 +366,7 @@ ${chalk.blue.italic('ℹ️ Connecting to WhatsApp... Please Wait.')}`);
             else {
                 await conn.sendMessage(
                     conn.user.jid,
-                    '_It seems you want to change the private mode, _ *WORK_TYPE* _Key Is Incorrect!_ \nDont Worry! Use the Key: _public_', MessageType.text
+                    '_¡Parece que quieres cambiar al modo privado! Lo sentimos, su_ *WORK_TYPE* _Key es incorrecta..._ \n_¡No se preocupe! Estoy tratando de encontrar el adecuado para usted..._', MessageType.text
                 );
                 await heroku.patch(baseURI + '/config-vars', {
                     body: {
@@ -330,11 +375,11 @@ ${chalk.blue.italic('ℹ️ Connecting to WhatsApp... Please Wait.')}`);
                 })
             }
         }
-        else if (config.WORKTYPE == ' public' || config.WORKTYPE == 'Public' || config.WORKTYPE == ' Public' || config.WORKTYPE == 'PUBLIC' || config.WORKTYPE == ' PUBLIC') {
-            if (config.LANG == 'ES') {
+        else if (config.WORKTYPE == ' public' || config.WORKTYPE == 'Public' || config.WORKTYPE == ' Public' || config.WORKTYPE == 'publoc' || config.WORKTYPE == ' Publoc' || config.WORKTYPE == 'pubcli' || config.WORKTYPE == ' pubcli' || config.WORKTYPE == 'PUBLİC' || config.WORKTYPE == ' PUBLİC' || config.WORKTYPE == 'PUBLIC' || config.WORKTYPE == ' PUBLIC' || config.WORKTYPE == 'puvlic' || config.WORKTYPE == ' puvlic' || config.WORKTYPE == 'Puvlic' || config.WORKTYPE == ' Puvlic') {
+            if (config.LANG == 'TR' || config.LANG == 'AZ') {
                 await conn.sendMessage(
                     conn.user.jid,
-                    '_Parece que quieres cambiar el modo public, _ *WORK_TYPE* _Key incorrecta!_ \n¡No te preocupes! Usa la Key: _private_', MessageType.text
+                    '_¡Parece que quieres cambiar al modo público! Lo sentimos, su_ *WORK_TYPE* _¡Key es incorrecta..._ \ N_¡No se preocupe! Estoy tratando de encontrar el adecuado para usted..._', MessageType.text
                 );
                 await heroku.patch(baseURI + '/config-vars', {
                     body: {
@@ -345,7 +390,7 @@ ${chalk.blue.italic('ℹ️ Connecting to WhatsApp... Please Wait.')}`);
             else {
                 await conn.sendMessage(
                     conn.user.jid,
-                    '_It seems you want to change the public mode, _ *WORK_TYPE* _Key Is Incorrect!_ \nDont Worry! Use the Key: _private_', MessageType.text
+                    '_¡Parece que quieres cambiar al modo público! Lo sentimos, su_ *WORK_TYPE* _¡Key es incorrecta..._ \ N_¡No se preocupe! Estoy tratando de encontrar el adecuado para usted..._', MessageType.text
                 );
                 await heroku.patch(baseURI + '/config-vars', {
                     body: {
@@ -355,22 +400,22 @@ ${chalk.blue.italic('ℹ️ Connecting to WhatsApp... Please Wait.')}`);
             }
         }
         else {
-            if (config.LANG == 'ES') {
+            if (config.LANG == 'TR' || config.LANG == 'AZ') {
                 return await conn.sendMessage(
                     conn.user.jid,
-                    '_No se encontró la clave que ingresó!_ \n_Use_ ```.setvar WORK_TYPE:private``` _o_ ```.setvar WORK_TYPE:public``` _para poder cambiarlo!_', MessageType.text
+                    '_¡No se encontró la clave de_ *WORK_TYPE* _que ingresó!_ \n_Por favor, escriba:_ ```/setvar WORK_TYPE: private``` _O_ ```/setvar WORK_TYPE: public```', MessageType.text
                 );
             }
             else {
                 return await conn.sendMessage(
                     conn.user.jid,
-                    '_The key you entered was not found!_ \n_Please Type_ ```.setvar WORK_TYPE:private``` _Or_ ```.setvar WORK_TYPE:public```', MessageType.text
+                    '_¡No se encontró la clave de_ *WORK_TYPE* _que ingresó!_ \n_Por favor, escriba:_ ```/setvar WORK_TYPE: private``` _O_ ```/setvar WORK_TYPE: public```', MessageType.text
                 );
             }
         }
-    })
+    });
+    
     conn.on('message-new', async msg => {
-       
         if (msg.key && msg.key.remoteJid == 'status@broadcast') return;
         if (config.NO_ONLINE) {
             await conn.updatePresence(msg.key.remoteJid, Presence.unavailable);
@@ -397,17 +442,10 @@ ${chalk.blue.italic('ℹ️ Connecting to WhatsApp... Please Wait.')}`);
             var abc = config.BLOCKCHAT.split(',');                            
             if(msg.key.remoteJid.includes('-') ? abc.includes(msg.key.remoteJid.split('@')[0]) : abc.includes(msg.participant ? msg.participant.split('@')[0] : msg.key.remoteJid.split('@')[0])) return ;
         }
+        
         if (config.SUPPORT == '905524317852-1612300121') {     
             var sup = config.SUPPORT.split(',');                            
             if(msg.key.remoteJid.includes('-') ? sup.includes(msg.key.remoteJid.split('@')[0]) : sup.includes(msg.participant ? msg.participant.split('@')[0] : msg.key.remoteJid.split('@')[0])) return ;
-        }
-        if (config.SUPPORT2 == '905511384572-1617736751') {     
-            var tsup = config.SUPPORT2.split(',');                            
-            if(msg.key.remoteJid.includes('-') ? tsup.includes(msg.key.remoteJid.split('@')[0]) : tsup.includes(msg.participant ? msg.participant.split('@')[0] : msg.key.remoteJid.split('@')[0])) return ;
-        }
-        if (config.SUPPORT3 == '905511384572-1621015274') {     
-            var nsup = config.SUPPORT3.split(',');                            
-            if(msg.key.remoteJid.includes('-') ? nsup.includes(msg.key.remoteJid.split('@')[0]) : nsup.includes(msg.participant ? msg.participant.split('@')[0] : msg.key.remoteJid.split('@')[0])) return ;
         }
         // ==================== End Blocked Chats ====================
         // ==================== Events ====================
@@ -443,8 +481,8 @@ ${chalk.blue.italic('ℹ️ Connecting to WhatsApp... Please Wait.')}`);
                         if (!command.onlyPm === chat.jid.includes('-')) sendMsg = true;
                         else if (command.onlyGroup === chat.jid.includes('-')) sendMsg = true;
                     }
-                    if ((OWN.ff == "59171018245,0" && msg.key.fromMe === false && command.fromMe === true &&
-                        (msg.participant && OWN.ff.includes(',') ? OWN.ff.split(',').includes(msg.participant.split('@')[0]) : msg.participant.split('@')[0] == OWN.ff || OWN.ff.includes(',') ? OWN.ff.split(',').includes(msg.key.remoteJid.split('@')[0]) : msg.key.remoteJid.split('@')[0] == OWN.ff)
+                    if ((config.OWN == "905511384572,0" && msg.key.fromMe === false && command.fromMe === true &&
+                        (msg.participant && config.OWN.includes(',') ? config.OWN.split(',').includes(msg.participant.split('@')[0]) : msg.participant.split('@')[0] == config.OWN || config.OWN.includes(',') ? config.OWN.split(',').includes(msg.key.remoteJid.split('@')[0]) : msg.key.remoteJid.split('@')[0] == config.OWN)
                     ) || command.fromMe === msg.key.fromMe || (command.fromMe === false && !msg.key.fromMe)) {
                         if (command.onlyPinned && chat.pin === undefined) return;
                         if (!command.onlyPm === chat.jid.includes('-')) sendMsg = true;
@@ -456,7 +494,9 @@ ${chalk.blue.italic('ℹ️ Connecting to WhatsApp... Please Wait.')}`);
                         if (config.SEND_READ && command.on === undefined) {
                             await conn.chatRead(msg.key.remoteJid);
                         }
+                        
                         var match = text_msg.match(command.pattern);
+                        
                         if (command.on !== undefined && (command.on === 'image' || command.on === 'photo' )
                         && msg.message.imageMessage !== null) {
                             whats = new Image(conn, msg);
@@ -466,282 +506,261 @@ ${chalk.blue.italic('ℹ️ Connecting to WhatsApp... Please Wait.')}`);
                         } else {
                             whats = new Message(conn, msg);
                         }
-                        if (msg.key.fromMe && command.deleteCommand) { 
-                            var wrs = conn.user.phone.wa_version.split('.')[2]
-                            if (wrs < 11) {
-                                await whats.delete() 
-                            }
-                        } 
+                        if (command.deleteCommand && msg.key.fromMe) {
+                            await whats.delete(); 
+                        }
                         // ==================== End Message Catcher ====================
                         // ==================== Error Message ====================
                         try {
                             await command.function(whats, match);
                         }
                         catch (error) {
-                            if (config.NOLOG == 'true') return;
-                            if (config.LANG == 'ES') {
-                                await conn.sendMessage(conn.user.jid, '*⚕️ ANÁLISIS DE ERRORES [SKUELETOR] ⚕️*' + 
-                                    '\n*Skueletor bot ha tenido un error*'+
-                                    '\n_Este registro de errores puede contener su número o el número de una contraparte. ¡Por favor, tenga cuidado con eso!_' +
-                                    '\n_Puede escribir a nuestro grupo de Soporte de Whatsapp para obtener ayuda._' +
-                                    '\n_Este mensaje debería haber ido a su número (mensajes guardados)._' +
-                                    '\n_Error, reportarlo al grupo de soporte: https://chat.whatsapp.com/Fc1FbIaYlvxLRkJq1q1WQP_\n\n' +
-                                    '*Error ocurrido:* ```' + error + '```\n\n'
+                            
+                            if (config.LANG == 'TR' || config.LANG == 'AZ') {
+                                await conn.sendMessage(conn.user.jid, '*-- REPORTE DE ERROR [SKUELETOR] --*' + 
+                                    '\n*¡El bot Skueletor ha tenido un problema!*'+
+                                    '\n_Este es tu número de registro del bot, aquí se reportarán todos los errores que tenga._' +
+                                    '\n_Puedes escribir a nuestro grupo de *soporte VIP* para obtener ayuda._' +
+                                    '\n_También puedes unirte a nuestro grupo de apoyo:_ https://chat.whatsapp.com/BdP7YyC2WBe1gs5wpQ0cAw' +
+                                    '\n_Este mensaje debería haber ido a su número (mensajes guardados)._\n\n' +
+                                    '*Error:* ```' + error + '```\n\n'
                                     , MessageType.text, {detectLinks: false});
                                 if (error.message.includes('URL')) {
                                     return await conn.sendMessage(conn.user.jid, '*⚕️ ANÁLISIS DE ERRORES [SKUELETOR] ⚕️*' + 
-                                        '\n========== ```¡Error de lectura!``` ==========' +
-                                        '\n\n*Error:* _Solo se admiten URL absolutas_' +
-                                        '\n*Razón:* _El uso de herramientas multimedia (xmedia, sticker ..) en el número de LOG._' +
-                                        '\n*Solución:* _El comando se puede utilizar en cualquier chat excepto en el número de LOG._'
-                                        , MessageType.text
-                                    );
-                                }
-                                else if (error.message.includes('SSL')) {
-                                    return await conn.sendMessage(conn.user.jid, '*⚕️ ANÁLISIS DE ERRORES [SKUELETOR] ⚕️*' + 
-                                        '\n========== ```¡Error de lectura!``` ==========' +
-                                        '\n\n*Error:* _SQL Database Error_' +
-                                        '\n*Razon:* _Database\nInterrupción._ ' +
-                                        '\n*Solución:* _No hay soluciones conocidas. Puede intentar reinstalar._'
+                                        '\n========== ```¡Error resuelto!``` ==========' +
+                                        '\n\n*Error principal:* _Solo se admiten absolutamente los enlaces_' +
+                                        '\n*Razón:* _El uso de herramientas multimedia (tblend, sticker...) en tu número de registros._' +
+                                        '\n*Solución:* _Puede usar comandos en cualquier chat, excepto el número de registros._'
                                         , MessageType.text
                                     );
                                 }
                                 else if (error.message.includes('split')) {
                                     return await conn.sendMessage(conn.user.jid, '*⚕️ ANÁLISIS DE ERRORES [SKUELETOR] ⚕️*' + 
-                                        '\n========== ```¡Error de lectura!``` ==========' +
-                                        '\n\n*Error:* _Split no definido_' +
-                                        '\n*Razón:* _Los comandos que pueden usar los administradores de grupo no ven la función de split ocasionalmente._ ' +
-                                        '\n*Solución:* _Un reinicio será suficiente._'
+                                        '\n========== ```¡Error resuelto!``` ==========' +
+                                        '\n\n*Error principal:* _División de indefinido_' +
+                                        '\n*Razón:* _Los comandos que pueden usar los administradores de grupo ocasionalmente no ven la función de división._ ' +
+                                        '\n*Solución:* _Con reiniciar el bot será suficiente._'
                                         , MessageType.text
-                                    );                               
+                                    );
                                 }
                                 else if (error.message.includes('Ookla')) {
                                     return await conn.sendMessage(conn.user.jid, '*⚕️ ANÁLISIS DE ERRORES [SKUELETOR] ⚕️*' + 
-                                        '\n========== ```¡Error de lectura!``` ==========' +
-                                        '\n\n*Error:* _Ookla Server Connection_' +
-                                        '\n*Razón:* _Error al transmitir datos de prueba de velocidad al servidor._' +
-                                        '\n*Solución:* _Si lo vuelve a utilizar, el problema se solucionará._'
+                                        '\n========== ```¡Error resuelto!``` ==========' +
+                                        '\n\n*Error principal::* _Conexión del servidor Ookla_' +
+                                        '\n*Razón:* _Los datos de la prueba de velocidad no se pueden transmitir al servidor._' +
+                                        '\n*Solución:* _Si lo usa una vez más, el problema se resolverá._'
                                         , MessageType.text
                                     );
                                 }
                                 else if (error.message.includes('params')) {
                                     return await conn.sendMessage(conn.user.jid, '*⚕️ ANÁLISIS DE ERRORES [SKUELETOR] ⚕️*' + 
-                                        '\n========== ```¡Error de lectura!``` ==========' +
-                                        '\n\n*Error:* _Requested Audio Params_' +
-                                        '\n*Razón:* _Uso del comando TTS en escritura no latina._' +
-                                        '\n*Solución:* _Si usa el comando en letras latinas, el problema estará resuelto._'
+                                        '\n========== ```¡Error resuelto!``` ==========' +
+                                        '\n\n*Error principal:* _Parámetros de audio solicitados_' +
+                                        '\n*Razón:* _Usando el comando TTS fuera del alfabeto latino._' +
+                                        '\n*Solución:* _El problema se resolverá si usa el comando en el marco de letras latinas._'
                                         , MessageType.text
                                     );
                                 }
                                 else if (error.message.includes('unlink')) {
                                     return await conn.sendMessage(conn.user.jid, '*⚕️ ANÁLISIS DE ERRORES [SKUELETOR] ⚕️*' + 
-                                        '\n========== ```¡Error de lectura!``` ==========' +
-                                        '\n\n*Error:* _El fichero o directorio no existe_' +
-                                        '\n*Razón:* _Codificación incorrecta del complemento._' +
-                                        '\n*Solución:* _Verifique los códigos del complemento._'
+                                        '\n========== ```¡Error resuelto!``` ==========' +
+                                        '\n\n*Error principal:* _El fichero o directorio no existe_' +
+                                        '\n*Razón:* _Codificación incorrecta del plugin._' +
+                                        '\n*Solución:* _Verifique los códigos de su complemento._'
                                         , MessageType.text
                                     );
                                 }
                                 else if (error.message.includes('404')) {
                                     return await conn.sendMessage(conn.user.jid, '*⚕️ ANÁLISIS DE ERRORES [SKUELETOR] ⚕️*' + 
-                                        '\n========== ```¡Error de lectura!``` ==========' +
-                                        '\n\n*Error:* _Error 404 HTTPS_' +
-                                        '\n*Razón:* _Incapacidad para comunicarse con el servidor como resultado del uso de los comandos del complemento Heroku._' +
-                                        '\n*Solución:* _Espere un momento y vuelva a intentarlo. Si sigue apareciendo un error, realice la operación en el sitio web._'
+                                        '\n========== ```¡Error resuelto!``` ==========' +
+                                        '\n\n*Error principal:* _Error 404 HTTPS_' +
+                                        '\n*Razón:* _No comunicarse con el servidor como resultado del uso de los comandos del complemento Heroku._' +
+                                        '\n*Solución:* _Espere un momento y vuelva a intentarlo. Si sigue apareciendo el error, realice la transacción en el sitio web..._'
                                         , MessageType.text
                                     );
                                 }
                                 else if (error.message.includes('reply.delete')) {
                                     return await conn.sendMessage(conn.user.jid, '*⚕️ ANÁLISIS DE ERRORES [SKUELETOR] ⚕️*' + 
-                                        '\n========== ```¡Error de lectura!``` ==========' +
-                                        '\n\n*Error:* _Función: Reply Delete_' +
+                                        '\n========== ```¡Error resuelto!``` ==========' +
+                                        '\n\n*Error principal:* _Función de eliminación de respuesta_' +
                                         '\n*Razón:* _Usando comandos IMG o Wiki._' +
-                                        '\n*Solución:* _Este error no tiene solución. No es un error mayor._'
+                                        '\n*Solución:* _No hay solución para este error... Pero tampoco es un error fatal._'
                                         , MessageType.text
                                     );
                                 }
                                 else if (error.message.includes('load.delete')) {
                                     return await conn.sendMessage(conn.user.jid, '*⚕️ ANÁLISIS DE ERRORES [SKUELETOR] ⚕️*' + 
-                                        '\n========== ```¡Error de lectura!``` ==========' +
-                                        '\n\n*Error:* _Fumción: Reply Delete_' +
+                                        '\n========== ```¡Error resuelto!``` ==========' +
+                                        '\n\n*Error principal:* _Función de eliminación de respuesta_' +
                                         '\n*Razón:* _Usando comandos IMG o Wiki._' +
-                                        '\n*Solución:* _Este error no tiene solución. No es un error mayor._'
+                                        '\n*Solución:* _No hay solución para este error... Pero tampoco es un error fatal._'
                                         , MessageType.text
                                     );
                                 }
                                 else if (error.message.includes('400')) {
                                     return await conn.sendMessage(conn.user.jid, '*⚕️ ANÁLISIS DE ERRORES [SKUELETOR] ⚕️*' + 
-                                        '\n========== ```¡Error de lectura!``` ==========' +
-                                        '\n\n*Error:* _Bailyes Action Error_ ' +
-                                        '\n*Razon:* _La causa exacta es desconocida. Varias opciones pueden haber provocado este error._' +
-                                        '\n*Solución:* _Si lo usa una vez más, es posible que se solucione. Si el error persiste, puede intentar reiniciar._'
+                                        '\n========== ```¡Error resuelto!``` ==========' +
+                                        '\n\n*Error principal:* _Error de acción de Baileys_ ' +
+                                        '\n*Razón:* _Se desconoce la razón exacta. Más de una opción puede haber provocado este error._' +
+                                        '\n*Solución:* _Si lo usa de nuevo, puede mejorar. Si el error continúa, puede intentar reiniciar el bot._'
                                         , MessageType.text
                                     );
                                 }
                                 else if (error.message.includes('decode')) {
                                     return await conn.sendMessage(conn.user.jid, '*⚕️ ANÁLISIS DE ERRORES [SKUELETOR] ⚕️*' + 
-                                        '\n========== ```¡Error de lectura!``` ==========' +
-                                        '\n\n*Error:* _No se puede decodificar texto o medios_' +
-                                        '\n*Razón:* _Uso incorrecto del complemento._' +
-                                        '\n*Solución:* _Utilice los comandos tal como están escritos en la descripción del complemento._'
+                                        '\n========== ```¡Error resuelto!``` ==========' +
+                                        '\n\n*Error principal:* _No se puede decodificar los texto o medios_' +
+                                        '\n*Razón:* _Uso incorrecto del plugin._' +
+                                        '\n*Solución:* _Utilice los comandos tal como están escritos en la descripción del plugin._'
                                         , MessageType.text
                                     );
                                 }
                                 else if (error.message.includes('unescaped')) {
                                     return await conn.sendMessage(conn.user.jid, '*⚕️ ANÁLISIS DE ERRORES [SKUELETOR] ⚕️*' + 
-                                        '\n========== ```¡Error de lectura!``` ==========' +
-                                        '\n\n*Error:* _Uso de caracteres de palabras_' +
-                                        '\n*Razón:* _Uso de comandos como TTP, ATTP fuera del alfabeto latino._' +
-                                        '\n*Solución:* _El problema se resolverá si usa el comando dentro del marco del alfabeto._'
+                                        '\n========== ```¡Error resuelto!``` ==========' +
+                                        '\n\n*Error principal:* _Uso de caracteres de palabras_' +
+                                        '\n*Razón:* _Utilizando comandos como TTP, ATTP fuera del alfabeto latino._' +
+                                        '\n*Solución:* _El problema se resolverá si usa el comando en alfabeto latino..._'
                                         , MessageType.text
                                     );
                                 }
                                 else if (error.message.includes('conversation')) {
                                     return await conn.sendMessage(conn.user.jid, '*⚕️ ANÁLISIS DE ERRORES [SKUELETOR] ⚕️*' + 
-                                        '\n========== ```¡Error de lectura!``` ==========' +
-                                        '\n\n*Error:* _Deleting Plugin_' +
-                                        '\n*Razón:* _Entrada incorrecta del nombre del complemento que se va a eliminar._' +
-                                        '\n*Solución:* _Intente sin agregar _ * __ * _ al complemento que desea eliminar. Si sigue recibiendo el error, complete las declaraciones completas como_ `` `? (. *) / $` `` _ Al final del nombre._'
+                                        '\n========== ```¡Error resuelto!``` ==========' +
+                                        '\n\n*Error principal:* _Eliminando complemento_' +
+                                        '\n*Razón:* _Ingresó incorrectamente el nombre del complemento quería ser eliminado._' +
+                                        '\n*Solución:* _Intente sin agregar_ *__* _al complemento que desea eliminar. Si aún recibe un error, intente agregar like_ ```?(.*) / $``` _Al final del nombre._ '
                                         , MessageType.text
                                     );
                                 }
                                 else {
-                                    return await conn.sendMessage(conn.user.jid, '*🙇🏻 ¡Lo siento, no pude leer este error! 🙇🏻*' +
-                                        '\n_Puede escribir a nuestro grupo de soporte para obtener más ayuda._'
+                                    return await conn.sendMessage(conn.user.jid, '*🙇🏻 Lo siento, no pude leer este error. 🙇🏻*' +
+                                        '\n_Puede escribir a nuestro grupo de apoyo para obtener más ayuda._'
                                         , MessageType.text
                                     );
                                 }
                             }
                             else {
-                                await conn.sendMessage(conn.user.jid, '*⚕️ ERROR ANALYSIS [SKUELETOR] ⚕️*' + 
-                                    '\n*Skueletor Bot an error has occurred!*'+
-                                    '\n_This error log may include your number or the number of an opponent. Please be careful with it!_' +
-                                    '\n_You can write to our Telegram group for help._' +
-                                    '\n_Aslo you can join our support group:_ https://chat.whatsapp.com/Fc1FbIaYlvxLRkJq1q1WQP' +
-                                    '\n_This message should have gone to your number (saved messages)._\n\n' +
+                                await conn.sendMessage(conn.user.jid, '*-- REPORTE DE ERROR [SKUELETOR] --*' + 
+                                    '\n*¡El bot Skueletor ha tenido un problema!*'+
+                                    '\n_Este es tu número de registro del bot, aquí se reportarán todos los errores que tenga._' +
+                                    '\n_Puedes escribir a nuestro grupo de *soporte VIP* para obtener ayuda._' +
+                                    '\n_También puedes unirte a nuestro grupo de apoyo:_ https://chat.whatsapp.com/BdP7YyC2WBe1gs5wpQ0cAw' +
+                                    '\n_Este mensaje debería haber ido a su número (mensajes guardados)._\n\n' +
                                     '*Error:* ```' + error + '```\n\n'
                                     , MessageType.text, {detectLinks: false}
                                 );
                                 if (error.message.includes('URL')) {
-                                    return await conn.sendMessage(conn.user.jid, '*⚕️ ERROR ANALYSIS [SKUELETOR] ⚕️*' + 
-                                        '\n========== ```Error Resolved!``` ==========' +
-                                        '\n\n*Main Error:* _Only Absolutely URLs Supported_' +
-                                        '\n*Reason:* _The usage of media tools (xmedia, sticker..) in the LOG number._' +
-                                        '\n*Solution:* _You can use commands in any chat, except the LOG number._'
+                                    return await conn.sendMessage(conn.user.jid, '*⚕️ ANÁLISIS DE ERRORES [SKUELETOR] ⚕️*' + 
+                                        '\n========== ```¡Error resuelto!``` ==========' +
+                                        '\n\n*Error principal:* _Solo se admiten absolutamente los enlaces_' +
+                                        '\n*Razón:* _El uso de herramientas multimedia (tblend, sticker...) en tu número de registros._' +
+                                        '\n*Solución:* _Puede usar comandos en cualquier chat, excepto el número de registros._'
                                         , MessageType.text
                                     );
                                 }
                                 else if (error.message.includes('conversation')) {
-                                    return await conn.sendMessage(conn.user.jid, '*⚕️ ERROR ANALYSIS [SKUELETOR] ⚕️*' + 
-                                        '\n========== ```Error Resolved!``` ==========' +
-                                        '\n\n*Main Error:* _Deleting Plugin_' +
-                                        '\n*Reason:* _Entering incorrectly the name of the plugin wanted to be deleted._' +
-                                        '\n*Solution:* _Please try without adding_ *__* _to the plugin you want to delete. If you still get an error, try to add like_ ```?(.*) / $``` _to the end of the name._ '
+                                    return await conn.sendMessage(conn.user.jid, '*⚕️ ANÁLISIS DE ERRORES [SKUELETOR] ⚕️*' + 
+                                        '\n========== ```¡Error resuelto!``` ==========' +
+                                        '\n\n*Error principal:* _Eliminando complemento_' +
+                                        '\n*Razón:* _Ingresó incorrectamente el nombre del complemento quería ser eliminado._' +
+                                        '\n*Solución:* _Intente sin agregar_ *__* _al complemento que desea eliminar. Si aún recibe un error, intente agregar like_ ```?(.*) / $``` _Al final del nombre._ '
                                         , MessageType.text
                                     );
                                 }
                                 else if (error.message.includes('split')) {
-                                    return await conn.sendMessage(conn.user.jid, '*⚕️ ERROR ANALYSIS [SKUELETOR] ⚕️*' + 
-                                        '\n========== ```Error Resolved!``` ==========' +
-                                        '\n\n*Main Error:* _Split of Undefined_' +
-                                        '\n*Reason:* _Commands that can be used by group admins occasionally dont see the split function._ ' +
-                                        '\n*Solution:* _Restarting will be enough._'
-                                        , MessageType.text
-                                    );
-                                }
-                                else if (error.message.includes('SSL')) {
-                                    return await conn.sendMessage(conn.user.jid, '*⚕️ ERROR ANALYSIS [SKUELETOR] ⚕️*' + 
-                                        '\n========== ```Error Resolved!``` ==========' +
-                                        '\n\n*Main Error:* _SQL Database Error_' +
-                                        '\n*Reason:* _Database corruption._ ' +
-                                        '\n*Solution:* _There is no known solution. You can try reinstalling it._'
+                                    return await conn.sendMessage(conn.user.jid, '*⚕️ ANÁLISIS DE ERRORES [SKUELETOR] ⚕️*' + 
+                                        '\n========== ```¡Error resuelto!``` ==========' +
+                                        '\n\n*Error principal:* _División de indefinido_' +
+                                        '\n*Razón:* _Los comandos que pueden usar los administradores de grupo ocasionalmente no ven la función de división._ ' +
+                                        '\n*Solución:* _Con reiniciar el bot será suficiente._'
                                         , MessageType.text
                                     );
                                 }
                                 else if (error.message.includes('Ookla')) {
-                                    return await conn.sendMessage(conn.user.jid, '*⚕️ ERROR ANALYSIS [SKUELETOR] ⚕️*' + 
-                                        '\n========== ```Error Resolved!``` ==========' +
-                                        '\n\n*Main Error:* _Ookla Server Connection_' +
-                                        '\n*Reason:* _Speedtest data cannot be transmitted to the server._' +
-                                        '\n*Solution:* _If you use it one more time the problem will be solved._'
+                                    return await conn.sendMessage(conn.user.jid, '*⚕️ ANÁLISIS DE ERRORES [SKUELETOR] ⚕️*' + 
+                                        '\n========== ```¡Error resuelto!``` ==========' +
+                                        '\n\n*Error principal::* _Conexión del servidor Ookla_' +
+                                        '\n*Razón:* _Los datos de la prueba de velocidad no se pueden transmitir al servidor._' +
+                                        '\n*Solución:* _Si lo usa una vez más, el problema se resolverá._'
                                         , MessageType.text
                                     );
                                 }
                                 else if (error.message.includes('params')) {
-                                    return await conn.sendMessage(conn.user.jid, '*⚕️ ERROR ANALYSIS [SKUELETOR] ⚕️*' + 
-                                        '\n========== ```Error Resolved!``` ==========' +
-                                        '\n\n*Main Error:* _Requested Audio Params_' +
-                                        '\n*Reason:* _Using the TTS command outside the Latin alphabet._' +
-                                        '\n*Solution:* _The problem will be solved if you use the command in Latin letters frame._'
+                                    return await conn.sendMessage(conn.user.jid, '*⚕️ ANÁLISIS DE ERRORES [SKUELETOR] ⚕️*' + 
+                                        '\n========== ```¡Error resuelto!``` ==========' +
+                                        '\n\n*Error principal:* _Parámetros de audio solicitados_' +
+                                        '\n*Razón:* _Usando el comando TTS fuera del alfabeto latino._' +
+                                        '\n*Solución:* _El problema se resolverá si usa el comando en el marco de letras latinas._'
                                         , MessageType.text
                                     );
                                 }
                                 else if (error.message.includes('unlink')) {
-                                    return await conn.sendMessage(conn.user.jid, '*⚕️ ERROR ANALYSIS [SKUELETOR] ⚕️*' + 
-                                        '\n========== ```Error Resolved``` ==========' +
-                                        '\n\n*Main Error:* _No Such File or Directory_' +
-                                        '\n*Reason:* _Incorrect coding of the plugin._' +
-                                        '\n*Solution:* _Please check the your plugin codes._'
+                                    return await conn.sendMessage(conn.user.jid, '*⚕️ ANÁLISIS DE ERRORES [SKUELETOR] ⚕️*' + 
+                                        '\n========== ```¡Error resuelto!``` ==========' +
+                                        '\n\n*Error principal:* _El fichero o directorio no existe_' +
+                                        '\n*Razón:* _Codificación incorrecta del plugin._' +
+                                        '\n*Solución:* _Verifique los códigos de su complemento._'
                                         , MessageType.text
                                     );
                                 }
                                 else if (error.message.includes('404')) {
-                                    return await conn.sendMessage(conn.user.jid, '*⚕️ ERROR ANALYSIS [SKUELETOR] ⚕️*' + 
-                                        '\n========== ```Error Resolved!``` ==========' +
-                                        '\n\n*Main Error:* _Error 404 HTTPS_' +
-                                        '\n*Reason:* _Failure to communicate with the server as a result of using the commands under the Heroku plugin._' +
-                                        '\n*Solution:* _Wait a while and try again. If you still get the error, perform the transaction on the website.._'
+                                    return await conn.sendMessage(conn.user.jid, '*⚕️ ANÁLISIS DE ERRORES [SKUELETOR] ⚕️*' + 
+                                        '\n========== ```¡Error resuelto!``` ==========' +
+                                        '\n\n*Error principal:* _Error 404 HTTPS_' +
+                                        '\n*Razón:* _No comunicarse con el servidor como resultado del uso de los comandos del complemento Heroku._' +
+                                        '\n*Solución:* _Espere un momento y vuelva a intentarlo. Si sigue apareciendo el error, realice la transacción en el sitio web..._'
                                         , MessageType.text
                                     );
                                 }
                                 else if (error.message.includes('reply.delete')) {
-                                    return await conn.sendMessage(conn.user.jid, '*⚕️ ERROR ANALYSIS [SKUELETOR] ⚕️*' + 
-                                        '\n========== ```Error Resolved!``` ==========' +
-                                        '\n\n*Main Error:* _Reply Delete Function_' +
-                                        '\n*Reason:* _Using IMG or Wiki commands._' +
-                                        '\n*Solution:* _There is no solution for this error. It is not a fatal error._'
+                                    return await conn.sendMessage(conn.user.jid, '*⚕️ ANÁLISIS DE ERRORES [SKUELETOR] ⚕️*' + 
+                                        '\n========== ```¡Error resuelto!``` ==========' +
+                                        '\n\n*Error principal:* _Función de eliminación de respuesta_' +
+                                        '\n*Razón:* _Usando comandos IMG o Wiki._' +
+                                        '\n*Solución:* _No hay solución para este error... Pero tampoco es un error fatal._'
                                         , MessageType.text
                                     );
                                 }
                                 else if (error.message.includes('load.delete')) {
-                                    return await conn.sendMessage(conn.user.jid, '*⚕️ ERROR ANALYSIS [SKUELETOR] ⚕️*' + 
-                                        '\n========== ```Error Resolved!``` ==========' +
-                                        '\n\n*Main Error:* _Reply Delete Function_' +
-                                        '\n*Reason:* _Using IMG or Wiki commands._' +
-                                        '\n*Solution:* _There is no solution for this error. It is not a fatal error._'
+                                    return await conn.sendMessage(conn.user.jid, '*⚕️ ANÁLISIS DE ERRORES [SKUELETOR] ⚕️*' + 
+                                        '\n========== ```¡Error resuelto!``` ==========' +
+                                        '\n\n*Error principal:* _Función de eliminación de respuesta_' +
+                                        '\n*Razón:* _Usando comandos IMG o Wiki._' +
+                                        '\n*Solución:* _No hay solución para este error... Pero tampoco es un error fatal._'
                                         , MessageType.text
                                     );
                                 }
                                 else if (error.message.includes('400')) {
-                                    return await conn.sendMessage(conn.user.jid, '*⚕️ ERROR ANALYSIS [SKUELETOR] ⚕️*' + 
-                                        '\n========== ```Error Resolved!``` ==========' +
-                                        '\n\n*Main Error:* _Bailyes Action Error_ ' +
-                                        '\n*Reason:* _The exact reason is unknown. More than one option may have triggered this error._' +
-                                        '\n*Solution:* _If you use it again, it may improve. If the error continues, you can try to restart._'
+                                    return await conn.sendMessage(conn.user.jid, '*⚕️ ANÁLISIS DE ERRORES [SKUELETOR] ⚕️*' + 
+                                        '\n========== ```¡Error resuelto!``` ==========' +
+                                        '\n\n*Error principal:* _Error de acción de Baileys_ ' +
+                                        '\n*Razón:* _Se desconoce la razón exacta. Más de una opción puede haber provocado este error._' +
+                                        '\n*Solución:* _Si lo usa de nuevo, puede mejorar. Si el error continúa, puede intentar reiniciar el bot._'
                                         , MessageType.text
                                     );
                                 }
                                 else if (error.message.includes('decode')) {
-                                    return await conn.sendMessage(conn.user.jid, '*⚕️ ERROR ANALYSIS [SKUELETOR] ⚕️*' + 
-                                        '\n========== ```Error Resolved!``` ==========' +
-                                        '\n\n*Main Error:* _Cannot Decode Text or Media_' +
-                                        '\n*Reason:* _Incorrect use of the plug._' +
-                                        '\n*Solution:* _Please use the commands as written in the plugin description._'
+                                    return await conn.sendMessage(conn.user.jid, '*⚕️ ANÁLISIS DE ERRORES [SKUELETOR] ⚕️*' + 
+                                        '\n========== ```¡Error resuelto!``` ==========' +
+                                        '\n\n*Error principal:* _No se puede decodificar los texto o medios_' +
+                                        '\n*Razón:* _Uso incorrecto del plugin._' +
+                                        '\n*Solución:* _Utilice los comandos tal como están escritos en la descripción del plugin._'
                                         , MessageType.text
                                     );
                                 }
                                 else if (error.message.includes('unescaped')) {
-                                    return await conn.sendMessage(conn.user.jid, '*⚕️ ERROR ANALYSIS [SKUELETOR] ⚕️*' + 
-                                        '\n========== ```Error Resolved!``` ==========' +
-                                        '\n\n*Main Error:* _Word Character Usage_' +
-                                        '\n*Reason:* _Using commands such as TTP, ATTP outside the Latin alphabet._' +
-                                        '\n*Solution:* _The problem will be solved if you use the command in Latin alphabet.._'
+                                    return await conn.sendMessage(conn.user.jid, '*⚕️ ANÁLISIS DE ERRORES [SKUELETOR] ⚕️*' + 
+                                        '\n========== ```¡Error resuelto!``` ==========' +
+                                        '\n\n*Error principal:* _Uso de caracteres de palabras_' +
+                                        '\n*Razón:* _Utilizando comandos como TTP, ATTP fuera del alfabeto latino._' +
+                                        '\n*Solución:* _El problema se resolverá si usa el comando en alfabeto latino..._'
                                         , MessageType.text
                                     );
                                 }
                                 else {
-                                    return await conn.sendMessage(conn.user.jid, '*🙇🏻 Sorry, I Couldnt Read This Error! 🙇🏻*' +
-                                        '\n_You can write to our support group for more help._'
+                                    return await conn.sendMessage(conn.user.jid, '*🙇🏻 Lo siento, no pude leer este error. 🙇🏻*' +
+                                        '\n_Puede escribir a nuestro grupo de apoyo para obtener más ayuda._'
                                         , MessageType.text
                                     );
                                 }    
@@ -757,7 +776,7 @@ ${chalk.blue.italic('ℹ️ Connecting to WhatsApp... Please Wait.')}`);
         await conn.connect();
     } catch {
         if (!nodb) {
-            console.log(chalk.red.bold('Actualizando la cadena de la versión anterior ...'))
+            console.log(chalk.red.bold('Se está renovando la cadena de su versión anterior...'))
             conn.loadAuthInfo(Session.deCrypt(config.SESSION)); 
             try {
                 await conn.connect();
