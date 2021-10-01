@@ -33,7 +33,7 @@
   },
   "homepage": "https://github.com/SkueletorTlg/WhatsAsenaDuplicated#readme",
   "dependencies": {
-    "@adiwajshing/baileys": "3.5.1",
+    "@adiwajshing/baileys": "3.4.1",
     "@lh2020/speedtest-net": "^2.1.1",
     "network-speed": "2.1.1",
     "@octokit/core": "3.5.1",
