@@ -38,7 +38,7 @@ async function whatsAsena () {
         }
         else {
             conn.sendMessage(conn.user.jid,st, MessageType.text)
-            conn.sendMessage(conn.user.jid,'*Please, Do Not Share This Code With Anyone!*', MessageType.text)
+            conn.sendMessage(conn.user.jid,'*Por favor, No compartas este codigo con nadie!*', MessageType.text)
         }
         console.log(
             chalk.blue.bold('If you are installing locale, you can start the bot with the node bot.js.')
