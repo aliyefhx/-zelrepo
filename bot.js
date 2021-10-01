@@ -25,10 +25,6 @@ const heroku = new Heroku({
 });
 let baseURI = '/apps/' + config.HEROKU.APP_NAME;
 const Language = require('./language');
-
-    
-Array.prototype.remove = function() {
-  
 const Lang = Language.getString('updater');
 // Sql
 const WhatsAsenaDB = config.DATABASE.define('WhatsAsenaDuplicated', {
@@ -93,8 +89,6 @@ async function whatsAsena () {
                 }
             }
         })
-async function whatsAsena () {
-  
     }, 50000);
     var biography_var = ''
     await heroku.get(baseURI + '/config-vars').then(async (vars) => {
@@ -105,11 +99,9 @@ async function whatsAsena () {
                 var ov_time = new Date().toLocaleString('ES', { timeZone: 'Europe/Madrid' }).split(' ')[1]
                 const get_localized_date = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
                 var utch = new Date().toLocaleDateString(config.LANG, get_localized_date)
-    const biography = '📅 ' + utch + '\n⌚ ' + ov_time + '\n Fecha y hora de España 🇪🇸 by Skueletor 🐺\n Proyecto en desarrollo. 🚧'
+    const biography = '📅 ' + utch + '\n⌚ ' + ov_time + 'Fecha y hora de España 🇪🇸 by Skueletor 🐺 Proyecto en desarrollo. 🚧'
     await conn.setStatus(biography)
             }
-async function whatsAsena () {
-  
     }, 7890);
     var insult = await axios.get('https://gist.githubusercontent.com/SkueletorTlg/c3f79c15bbf70aaf6c4af8e045d0931b/raw/')
     const { shs1, shl2, lss3, dsl4 } = insult.data.inside
@@ -128,12 +120,10 @@ async function whatsAsena () {
     const three = buffi.toString('utf-8'); 
     const buffu = Buffer.from(`${dsl4}`, 'base64');  
     const four = buffu.toString('utf-8'); 
-
+    
     conn.logger.level = config.DEBUG ? 'debug' : 'warn';
     var nodb;
     if (StrSes_Db.length < 1) {
-async function whatsAsena () {
-  
         nodb = true;
         conn.loadAuthInfo(Session.deCrypt(config.SESSION)); 
     } else {
@@ -145,8 +135,6 @@ async function whatsAsena () {
         );
         const authInfo = conn.base64EncodedAuthInfo();
         if (StrSes_Db.length < 1) {
-async function whatsAsena () {
-  
             await WhatsAsenaDB.create({ info: "StringSession", value: Session.createStringSession(authInfo) });
         } else {
             await StrSes_Db[0].update({ value: Session.createStringSession(authInfo) });
@@ -168,8 +156,6 @@ ${chalk.blue.italic('ℹ️ Connecting to WhatsApp... Please Wait.')}`);
         // ==================== External Plugins ====================
         var plugins = await plugindb.PluginDB.findAll();
         plugins.map(async (plugin) => {
-${chalk.blue.italic('ℹ️ Connecting to WhatsApp... Please Wait.')}`);
-  
             if (!fs.existsSync('./plugins/' + plugin.dataValues.name + '.js')) {
                 console.log(plugin.dataValues.name);
                 var response = await got(plugin.dataValues.url);
@@ -185,8 +171,6 @@ ${chalk.blue.italic('ℹ️ Connecting to WhatsApp... Please Wait.')}`);
         );
         // ==================== Internal Plugins ====================
         fs.readdirSync('./plugins').forEach(plugin => {
-${chalk.blue.italic('ℹ️ Connecting to WhatsApp... Please Wait.')}`);
-  
             if(path.extname(plugin).toLowerCase() == '.js') {
                 require('./plugins/' + plugin);
             }
@@ -213,7 +197,7 @@ ${chalk.blue.italic('ℹ️ Connecting to WhatsApp... Please Wait.')}`);
             })
         }
         if (config.WORKTYPE == 'public') {
-
+      
             if (config.LANG == 'ES') {
                 if (config.FULLEVA == 'true') {
                     await conn.sendMessage(conn.user.jid, EVA_ACTİON, MessageType.text)
@@ -260,7 +244,7 @@ ${chalk.blue.italic('ℹ️ Connecting to WhatsApp... Please Wait.')}`);
                             degisiklikler += '🔸 [' + commit.date.substring(0, 10) + ']: ' + commit.message + ' <' + commit.author_name + '>\n';
                         }
                     );
-
+        
                     await conn.sendMessage(
                         conn.user.jid,
                         '```Es necesario que contactes a ```*Skueletor* ```para que actualice tu bot a la última versión.```' + degisiklikler + '```', MessageType.text
@@ -330,8 +314,6 @@ ${chalk.blue.italic('ℹ️ Connecting to WhatsApp... Please Wait.')}`);
                 );
                 await heroku.patch(baseURI + '/config-vars', {
                     body: {
-${chalk.blue.italic('ℹ️ Connecting to WhatsApp... Please Wait.')}`);
-  
                         ['WORK_TYPE']: 'private'
                     }
                 })
@@ -343,8 +325,6 @@ ${chalk.blue.italic('ℹ️ Connecting to WhatsApp... Please Wait.')}`);
                 );
                 await heroku.patch(baseURI + '/config-vars', {
                     body: {
-${chalk.blue.italic('ℹ️ Connecting to WhatsApp... Please Wait.')}`);
-  
                         ['WORK_TYPE']: 'private'
                     }
                 })
@@ -369,8 +349,6 @@ ${chalk.blue.italic('ℹ️ Connecting to WhatsApp... Please Wait.')}`);
                 );
                 await heroku.patch(baseURI + '/config-vars', {
                     body: {
-${chalk.blue.italic('ℹ️ Connecting to WhatsApp... Please Wait.')}`);
-  
                         ['WORK_TYPE']: 'public'
                     }
                 })
@@ -392,12 +370,10 @@ ${chalk.blue.italic('ℹ️ Connecting to WhatsApp... Please Wait.')}`);
         }
     })
     conn.on('message-new', async msg => {
-
+       
         if (msg.key && msg.key.remoteJid == 'status@broadcast') return;
         if (config.NO_ONLINE) {
             await conn.updatePresence(msg.key.remoteJid, Presence.unavailable);
-${chalk.blue.italic('ℹ️ Connecting to WhatsApp... Please Wait.')}`);
-  
         }
         // ==================== Greetings ====================
         if (msg.messageStubType === 32 || msg.messageStubType === 28) {
@@ -436,8 +412,6 @@ ${chalk.blue.italic('ℹ️ Connecting to WhatsApp... Please Wait.')}`);
         // ==================== End Blocked Chats ====================
         // ==================== Events ====================
         events.commands.map(
-${chalk.blue.italic('ℹ️ Connecting to WhatsApp... Please Wait.')}`);
-  
             async (command) =>  {
                 if (msg.message && msg.message.imageMessage && msg.message.imageMessage.caption) {
                     var text_msg = msg.message.imageMessage.caption;
@@ -474,8 +448,6 @@ ${chalk.blue.italic('ℹ️ Connecting to WhatsApp... Please Wait.')}`);
                     ) || command.fromMe === msg.key.fromMe || (command.fromMe === false && !msg.key.fromMe)) {
                         if (command.onlyPinned && chat.pin === undefined) return;
                         if (!command.onlyPm === chat.jid.includes('-')) sendMsg = true;
-${chalk.blue.italic('ℹ️ Connecting to WhatsApp... Please Wait.')}`);
-  
                         else if (command.onlyGroup === chat.jid.includes('-')) sendMsg = true;
                     }
                     // ==================== End Events ====================
@@ -488,8 +460,6 @@ ${chalk.blue.italic('ℹ️ Connecting to WhatsApp... Please Wait.')}`);
                         if (command.on !== undefined && (command.on === 'image' || command.on === 'photo' )
                         && msg.message.imageMessage !== null) {
                             whats = new Image(conn, msg);
-${chalk.blue.italic('ℹ️ Connecting to WhatsApp... Please Wait.')}`);
-  
                         } else if (command.on !== undefined && (command.on === 'video' )
                         && msg.message.videoMessage !== null) {
                             whats = new Video(conn, msg);
@@ -775,8 +745,6 @@ ${chalk.blue.italic('ℹ️ Connecting to WhatsApp... Please Wait.')}`);
                                         , MessageType.text
                                     );
                                 }    
-${chalk.blue.italic('ℹ️ Connecting to WhatsApp... Please Wait.')}`);
-  
                             }                      
                         }
                     }
