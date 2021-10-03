@@ -2,10 +2,7 @@
 const Skueletor = require('../events');
 const {MessageType, MessageOptions, Mimetype} = require('@adiwajshing/baileys');
 const axios = require('axios');
-const { requestLyricsFor, requestAuthorFor, requestTitleFor, requestIconFor } = require("solenolyrics");
-const solenolyrics= require("solenolyrics"); 
-const Sea = require('search-engine-client');
-const TinyURL = require('tinyurl');
+const cn = requier('./config');
 const fs = require('fs');
 const Language = require('../language');
 const Lang = Language.getString('instagram')
@@ -37,7 +34,7 @@ if (cn.WORKTYPE == 'private') {
     });
 }
 
-if (cn.WORKTYPE == 'private') {
+if (cn.WORKTYPE == 'public') {
 
     Asena.addCommand({ pattern: 'insta ?(.*)', fromMe: false, desc: Lang.DESC }, async (message, match) => {
 
