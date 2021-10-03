@@ -2,7 +2,7 @@ const Skueletor = require('../events');
 const {MessageType} = require('@adiwajshing/baileys');
 const got = require('got');
 const Config = require('./config')
-
+const fs = require('fs');
 const Language = require('../language');
 const Lang = Language.getString('insult');
 
@@ -19,7 +19,7 @@ Skueletor.addCommand({pattern: 'insult ?(.*)', fromMe: true, desc: Lang.EVINS_DE
      await message.client.sendMessage(message.jid, '👿🤬 *Insulto para ' + '@' + message.reply_message.jid.split('@')[0] + ':' + '* ```' + json.insult + '```\n\nHecho por *Skueletor*', MessageType.text, {
           quotedMessage: message.reply_message.data, contextInfo: {mentionedJid: [message.reply_message.jid.replace('c.us', 's.whatsapp.net')]}
               
-		return await message.client.sendMessage(message.jid, Lang.NOT_FOUNDAC, MessageType.text);
+	})return await message.client.sendMessage(message.jid, Lang.NOT_FOUNDAC, MessageType.text);
 	}
 });
   
@@ -36,6 +36,6 @@ Skueletor.addCommand({pattern: 'insult ?(.*)', fromMe: false, desc: Lang.EVINS_D
      await message.client.sendMessage(message.jid, '👿🤬 *Insulto para ' + '@' + message.reply_message.jid.split('@')[0] + ':' + '* ```' + json.insult + '```\n\nHecho por *Skueletor*', MessageType.text, {
           quotedMessage: message.reply_message.data, contextInfo: {mentionedJid: [message.reply_message.jid.replace('c.us', 's.whatsapp.net')]}
               
-		return await message.client.sendMessage(message.jid, Lang.NOT_FOUNDAC, MessageType.text);
+	})return await message.client.sendMessage(message.jid, Lang.NOT_FOUNDAC, MessageType.text);
 	}
 });
