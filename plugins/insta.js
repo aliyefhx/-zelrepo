@@ -10,7 +10,7 @@ const { errorMessage, infoMessage } = require('../helpers')
 
 if (cn.WORKTYPE == 'private') {
 
-    Asena.addCommand({ pattern: 'insta ?(.*)', fromMe: true, desc: Lang.DESC }, async (message, match) => {
+    Skueletor.addCommand({ pattern: 'insta ?(.*)', fromMe: true, desc: Lang.DESC }, async (message, match) => {
 
         const userName = match[1]
 
@@ -36,7 +36,7 @@ if (cn.WORKTYPE == 'private') {
 
 if (cn.WORKTYPE == 'public') {
 
-    Asena.addCommand({ pattern: 'insta ?(.*)', fromMe: false, desc: Lang.DESC }, async (message, match) => {
+    Skueletor.addCommand({ pattern: 'insta ?(.*)', fromMe: false, desc: Lang.DESC }, async (message, match) => {
 
         const userName = match[1]
 
