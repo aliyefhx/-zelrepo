@@ -2,6 +2,7 @@ const Skueletor = require('../events');
 const {MessageType, MessageOptions, Mimetype} = require('@adiwajshing/baileys');
 const got = require('got');
 const Config = require('../config')
+const { errorMessage, infoMessage } = require('../helpers');
 const fs = require('fs');
 const Language = require('../language');
 const Lang = Language.getString('insult');
@@ -22,7 +23,7 @@ Skueletor.addCommand({pattern: 'insult ?(.*)', fromMe: true, OnlyGroup: true, de
           quotedMessage: message.reply_message.data, contextInfo: {mentionedJid: [message.reply_message.jid.replace('c.us', 's.whatsapp.net')]}
 	} 
 	.catch {
-		return await message.client.sendMessage(message.jid, Lang.NOT_FOUNDAC, MessageType.text);
+          async (err) => await message.client.sendMessage(message.jid, Lang.NOT_FOUNDAC ,MessageType.text, {quoted: message.data}),
 	}
 });
 }
@@ -43,7 +44,7 @@ Skueletor.addCommand({pattern: 'insult ?(.*)', fromMe: false, OnlyGroup: true, d
           quotedMessage: message.reply_message.data, contextInfo: {mentionedJid: [message.reply_message.jid.replace('c.us', 's.whatsapp.net')]}
 	} 
 	.catch {
-		return await message.client.sendMessage(message.jid, Lang.NOT_FOUNDAC, MessageType.text);
+          async (err) => await message.client.sendMessage(message.jid, Lang.NOT_FOUNDAC ,MessageType.text, {quoted: message.data}),
 	}
 });
 }
