@@ -2,49 +2,36 @@ const Skueletor = require('../events');
 const {MessageType, MessageOptions, Mimetype} = require('@adiwajshing/baileys');
 const got = require('got');
 const Config = require('../config')
-const { errorMessage, infoMessage } = require('../helpers');
-const fs = require('fs');
+
 const Language = require('../language');
 const Lang = Language.getString('insult');
 
-if (Config.WORKTYPE == 'private') {
-	
-Skueletor.addCommand({pattern: 'insult ?(.*)', fromMe: true, OnlyGroup: true, desc: Lang.EVINS_DESC}, async (message, match) => {
-	
-  if (message.reply_message === false) return await message.client.sendMessage(message.jid, Lang.NEED_LOCATIONA, MessageType.text);
-	
-	const url = `https://evilinsult.com/generate_insult.php?lang=es&type=json`;
+if (Config.WOKRTYPE == 'private') {
+
+Skueletor.addCommand({pattern: 'insult ?(.*)', fromMe: true, onlyGroup: true, desc: Lang.EVINS_DESC}, async (message, match) => {
+	if (match[1] === 'xx') return await message.reply(Lang.NEED_LOCATIONA);
+	const url = `https://evilinsult.com/generate_insult.php?lang=eS&type=json`;
 	try {
 		const response = await got(url);
 		const json = JSON.parse(response.body);
-
-
-     await message.client.sendMessage(message.jid, '👿🤬 *Insulto para ' + '@' + message.reply_message.jid.split('@')[0] + ':' + '* ```' + json.insult + '```\n\nHecho por *Skueletor*', MessageType.text, {
-          quotedMessage: message.reply_message.data, contextInfo: {mentionedJid: [message.reply_message.jid.replace('c.us', 's.whatsapp.net')]}
-	} 
-	.catch {
-          async (err) => await message.client.sendMessage(message.jid, Lang.NOT_FOUNDAC ,MessageType.text, {quoted: message.data}),
+		if (response.statusCode === 200) return await message.client.sendMessage(message.jid, '\n\n 👿🤬 *Insulto:* ' + '```' + json.insult + '```\n\n', MessageType.text);
+	} catch {
+		return await message.client.sendMessage(message.jid, Lang.NOT_FOUNDAC, MessageType.text);
 	}
 });
 }
-  
-  if (Config.WORKTYPE == 'public') {
 
-Skueletor.addCommand({pattern: 'insult ?(.*)', fromMe: false, OnlyGroup: true, desc: Lang.EVINS_DESC}, async (message, match) => {
-	
-  if (message.reply_message === false) return await message.client.sendMessage(message.jid, Lang.NEED_LOCATIONA, MessageType.text);
-	
-	const url = `https://evilinsult.com/generate_insult.php?lang=es&type=json`;
+if (Config.WOKRTYPE == 'public') {
+
+Skueletor.addCommand({pattern: 'insult ?(.*)', fromMe: false, onlyGroup: true, desc: Lang.EVINS_DESC}, async (message, match) => {
+	if (match[1] === 'xx') return await message.reply(Lang.NEED_LOCATIONA);
+	const url = `https://evilinsult.com/generate_insult.php?lang=eS&type=json`;
 	try {
 		const response = await got(url);
 		const json = JSON.parse(response.body);
-
-
-     await message.client.sendMessage(message.jid, '👿🤬 *Insulto para ' + '@' + message.reply_message.jid.split('@')[0] + ':' + '* ```' + json.insult + '```\n\nHecho por *Skueletor*', MessageType.text, {
-          quotedMessage: message.reply_message.data, contextInfo: {mentionedJid: [message.reply_message.jid.replace('c.us', 's.whatsapp.net')]}
-	} 
-	.catch {
-          async (err) => await message.client.sendMessage(message.jid, Lang.NOT_FOUNDAC ,MessageType.text, {quoted: message.data}),
+		if (response.statusCode === 200) return await message.client.sendMessage(message.jid, '\n\n 👿🤬 *Insulto:* ' + '```' + json.insult + '```\n\n', MessageType.text);
+	} catch {
+		return await message.client.sendMessage(message.jid, Lang.NOT_FOUNDAC, MessageType.text);
 	}
 });
 }
