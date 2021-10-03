@@ -407,6 +407,11 @@
             "VİD_DESC": "Envía el video respondido como spam.",
             "VİD_NEED": "```¡Responde a cualquier video!```"
         },
+        "insult": {
+            "EVINS_DESC": "Envía un insulto a la persona respondida",
+            "NOT_FOUNDAC": "No se encontraron insultos 😖",
+            "NEED_LOCATIONA": "Necesito que respondas a alguna persona para insultarla 👿"
+        },
         "mods": {
             "NAMEY": "Nombre:",
             "PUBLISHER": "Editor",
