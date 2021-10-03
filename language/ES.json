@@ -498,10 +498,10 @@
             "SUC": "*¡Mensaje guardado correctamente en tus registros!*"
         },
         "instagram": {
-            "NEED_WORD": "*Ingrese cualquier enlace de medios de Instagram!*",
+            "NEED_WORD": "*Es necesario que ingrese algún nombre de usuario de Instagram para realizar la búsqueda del perfil*",
             "USAGE": "/insta <Enlace de video o foto>",
             "DESC": "Descarga videos o fotos de Instagram.",
-            "LOADING": "Cargando perfil de usuario. Espere por favor...",
+            "LOADING": "Cargando perfil de usuario.\nEspere por favor...",
             "USERNAME": "Nombre de usuario",
             "FİX": "*¡La realización de descargas de medios está en mantenimiento!*",
             "NAME": "Nombre",
@@ -511,10 +511,7 @@
             "ACCOUNT": "Privacidad de la cuenta",
             "PUBLIC": "Pública",
             "HIDDEN": "Oculta",
-            "NOT_FOUND": "*Medios no encontrados*",
-            "need": "¡Ingresa el nombre de usuario del perfil a buscar!",
-            "loading": "Cargando información del perfil. Espere por favor.",
-            "iErr": "⚠️ *Parece que se ha ocurrido un error, inténtelo nuevamente más tarde o utilice otro perfil.*"
+            "NOT_FOUND": "⚠️ *Parece que se ha ocurrido un error con su búsqueda,* \ninténtelo nuevamente más tarde o utilice otro perfil.*",
         },
         "github": {
             "GİTHUB_DESC": "Recopila información de github del nombre de usuario dado.\n⌨️ Ejemplo: /github phaticusthiccy",
