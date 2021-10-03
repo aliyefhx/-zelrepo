@@ -21,7 +21,6 @@ Skueletor.addCommand({pattern: 'insult ?(.*)', fromMe: true, desc: Lang.EVINS_DE
               
 	}); 
 	return await message.client.sendMessage(message.jid, Lang.NOT_FOUNDAC, MessageType.text);
-	}
 });
   
   if (Config.WORKTYPE == 'public') {
@@ -39,5 +38,4 @@ Skueletor.addCommand({pattern: 'insult ?(.*)', fromMe: false, desc: Lang.EVINS_D
               
 	});
 	return await message.client.sendMessage(message.jid, Lang.NOT_FOUNDAC, MessageType.text);
-	}
 });
