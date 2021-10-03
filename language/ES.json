@@ -511,7 +511,7 @@
             "ACCOUNT": "Privacidad de la cuenta",
             "PUBLIC": "Pública",
             "HIDDEN": "Oculta",
-            "NOT_FOUND": "⚠️ *Parece que se ha ocurrido un error con su búsqueda,* \ninténtelo nuevamente más tarde o utilice otro perfil.*",
+            "NOT_FOUND": "⚠️ *Parece que se ha ocurrido un error con su búsqueda,* \ninténtelo nuevamente más tarde o utilice otro perfil.*"
         },
         "github": {
             "GİTHUB_DESC": "Recopila información de github del nombre de usuario dado.\n⌨️ Ejemplo: /github phaticusthiccy",
